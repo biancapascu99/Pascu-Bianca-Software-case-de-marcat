@@ -10,9 +10,11 @@ import java.util.List;
 public class CardService {
     private static CardService instance = new CardService();
     private CardRepository cardRepository = new CardRepository();
+    private AuditService auditService = AuditService.getInstance();
 
     private CardService() {
-        System.out.println("CardService a fost creat");
+
+//        System.out.println("CardService a fost creat");
     }
 
     public static CardService getInstance() {
@@ -20,6 +22,7 @@ public class CardService {
     }
 
     public void addCard(Card p) {
+        auditService.writeData("CardService-addCard");
         cardRepository.add(p);
     }
 
@@ -27,7 +30,8 @@ public class CardService {
         cardRepository.add(p);
     }
 
-    public List<Card> getCard(){
+    public List<Card> getCard() {
+        auditService.writeData("CardService-getCard");
         return cardRepository.getAll();
     }
 }

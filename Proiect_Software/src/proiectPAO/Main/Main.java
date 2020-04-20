@@ -4,11 +4,7 @@ import proiectPAO.model.cashregisters.CashRegister;
 import proiectPAO.model.payment.Card;
 import proiectPAO.model.payment.Payment;
 import proiectPAO.model.products.*;
-import proiectPAO.repository.ProductRepository;
-import proiectPAO.service.CardService;
-import proiectPAO.service.CashRegisterService;
-import proiectPAO.service.PaymentService;
-import proiectPAO.service.ProductService;
+import proiectPAO.service.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +16,20 @@ public class Main {
     private static List<CashRegister> cashRegisterList = new ArrayList<>();
     private static List<Card> cardList = new ArrayList<>();
 
+    private static CashRegisterService cashRegisterService = CashRegisterService.getInstance();
+    private static PaymentService paymentService = PaymentService.getInstance();
+    private static ProductService productService = ProductService.getInstance();
+    private static CardService cardService = CardService.getInstance();
+
+    private static CardCSVService cardCSVService = CardCSVService.getInstance();
+    private static CashRegisterCSVService cashRegisterCSVService = CashRegisterCSVService.getInstance();
+    private static FoodProductCSVService foodProductCSVService = FoodProductCSVService.getInstance();
+    private static CleaningProductCSVService cleaningProductCSVService = CleaningProductCSVService.getInstance();
+    private static FurnitureProductCSVService furnitureProductCSVService = FurnitureProductCSVService.getInstance();
+    private static AppliancesProductCSVService appliancesProductCSVService = AppliancesProductCSVService.getInstance();
+    private static ClotheProductCSVService clotheProductCSVService = ClotheProductCSVService.getInstance();
+
+    //    Etapa I
     private static void createLists() {
 
         productList.add(new FoodProduct("oua", 30, 10, true));
@@ -55,14 +65,11 @@ public class Main {
 
     }
 
-
-    public static void main(String[] args) {
-
+    public static void etapaI() {
         createLists();
 
         //Product
 
-        ProductService productService = ProductService.getInstance();
         productService.addProduct(productList);
 
         System.out.println("Lista produselor");
@@ -89,7 +96,6 @@ public class Main {
 
         //Payment
 
-        PaymentService paymentService = PaymentService.getInstance();
         paymentService.addProduct(paymentList);
 
         System.out.println("\nBonurile emise de casa cu numarul 5:");
@@ -107,7 +113,6 @@ public class Main {
 
         //CashRegister
 
-        CashRegisterService cashRegisterService = CashRegisterService.getInstance();
         cashRegisterService.addCashRegister(cashRegisterList);
         System.out.println(cashRegisterService.getCashRegister());
         System.out.println("\nCasa cu numarul 7 a fost schimbata in casa cu numarul 6.");
@@ -116,11 +121,43 @@ public class Main {
 
         //Card
 
-        CardService cardService = CardService.getInstance();
         cardService.addCard(cardList);
         System.out.println("\nLista cardurilor; ");
         System.out.println(cardService.getCard());
+    }
 
+//    EtapaII
+    public static void loadData() {
+        cardCSVService.readData();
+        cashRegisterCSVService.readData();
+        foodProductCSVService.readData();
+        furnitureProductCSVService.readData();
+        cleaningProductCSVService.readData();
+        clotheProductCSVService.readData();
+        appliancesProductCSVService.readData();
+    }
+
+    public static void etapaII() {
+
+        loadData();
+
+        System.out.println("Lista produselor");
+        System.out.println(productService.getProducts());
+
+        System.out.println("\nLista caselor");
+        System.out.println(cashRegisterService.getCashRegister());
+
+        System.out.println("\nLista cardurilor; ");
+        System.out.println(cardService.getCard());
+
+    }
+
+
+    public static void main(String[] args) {
+
+//        etapaI();
+        System.out.println("__________ETAPA_II____________");
+        etapaII();
     }
 }
 

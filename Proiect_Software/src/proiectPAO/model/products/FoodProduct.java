@@ -8,6 +8,10 @@ public class FoodProduct extends Product {
         super(name, price, quantity);
         this.isExpired = isExpired;
     }
+    public FoodProduct(String name, double price, int quantity, double discount,boolean isExpired) {
+        super(name, price, quantity, discount);
+        this.isExpired = isExpired;
+    }
 
     public FoodProduct(String name, double price, int quantity, double discount) {
         super(name, price, quantity, discount);

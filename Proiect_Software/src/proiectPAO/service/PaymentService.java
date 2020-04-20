@@ -10,6 +10,7 @@ public class PaymentService {
 
     private static PaymentService instance = new PaymentService();
     private PaymentRepository paymentRepository = new PaymentRepository();
+    private AuditService auditService = AuditService.getInstance();
 
     private PaymentService() {
         System.out.println("PaymentService a fost creat");
@@ -20,6 +21,7 @@ public class PaymentService {
     }
 
     public void addPayment(Payment p) {
+        auditService.writeData("PaymentService-addPayment");
         paymentRepository.add(p);
     }
 
@@ -28,29 +30,35 @@ public class PaymentService {
     }
 
     public List<Payment> getPayments() {
+        auditService.writeData("PaymentService-getPayment");
         return paymentRepository.getAll();
     }
 
     //bonurile eliberate de casa cu numarul 'number'
     public List<Payment> getByCashRegister(int number) {
+        auditService.writeData("PaymentService-getByCashRegister");
         return paymentRepository.findByCashRegisterNumber(number);
     }
 
     //bonurile platite cu cardul
     public List<Payment> getByPaymentCard() {
+        auditService.writeData("PaymentService-getByPaymentCard");
         return paymentRepository.getPaymentCard();
     }
 
     //bonurile platite cash
     public List<Payment> getByPaymentCash() {
+        auditService.writeData("PaymentService-getByPaymentCash");
         return paymentRepository.getPaymentCash();
     }
 
     public void deleteById(int id) {
+        auditService.writeData("PaymentService-deleteById");
         paymentRepository.delete(id);
     }
 
     public Payment findById(int id) {
+        auditService.writeData("PaymentService-findById");
         return paymentRepository.findById(id);
     }
 }
