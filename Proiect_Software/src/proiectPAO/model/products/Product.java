@@ -1,7 +1,6 @@
 package proiectPAO.model.products;
 
 public abstract class Product {
-//id pt fiecare produs, si delete pe id
 
     protected String name;
     protected double price;

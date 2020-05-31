@@ -3,8 +3,43 @@ package proiectPAO.model.products;
 import java.time.LocalDate;
 
 public class FurnitureProduct extends Product {
+    private int idProduct;
     private boolean hasGuarantee;
     private double priceTransport;
+
+    public FurnitureProduct(int idProduct, boolean hasGuarantee, double priceTransport) {
+        this.idProduct = idProduct;
+        this.hasGuarantee = hasGuarantee;
+        this.priceTransport = priceTransport;
+    }
+
+    public FurnitureProduct( int idProduct, String name, double price, int quantity, double discount, boolean hasGuarantee, double priceTransport) {
+        super(name, price, quantity, discount);
+        this.idProduct = idProduct;
+        this.hasGuarantee = hasGuarantee;
+        this.priceTransport = priceTransport;
+    }
+
+    public FurnitureProduct(String name, double price, int quantity, int idProduct, boolean hasGuarantee, double priceTransport) {
+        super(name, price, quantity);
+        this.idProduct = idProduct;
+        this.hasGuarantee = hasGuarantee;
+        this.priceTransport = priceTransport;
+    }
+
+    public FurnitureProduct(String name, double price, double discount, int idProduct, boolean hasGuarantee, double priceTransport) {
+        super(name, price, discount);
+        this.idProduct = idProduct;
+        this.hasGuarantee = hasGuarantee;
+        this.priceTransport = priceTransport;
+    }
+
+    public FurnitureProduct(String name, double price, int idProduct, boolean hasGuarantee, double priceTransport) {
+        super(name, price);
+        this.idProduct = idProduct;
+        this.hasGuarantee = hasGuarantee;
+        this.priceTransport = priceTransport;
+    }
 
     public FurnitureProduct(String name, double price, int quantity, double discount, boolean hasGuarantee, double priceTransport) {
         super(name, price, quantity, discount);
@@ -44,6 +79,9 @@ public class FurnitureProduct extends Product {
         super(name, price);
     }
 
+    public FurnitureProduct() {
+    }
+
     @Override
     public double priceQuantity() {
         if (discount != 0 && priceTransport == 0)
@@ -57,13 +95,21 @@ public class FurnitureProduct extends Product {
     }
 
     @Override
-    public String toString() {
-        return "Nume produs: " + this.name + " Pret: " + this.priceQuantity();
+    public String getName() {
+        return super.getName();
     }
 
     @Override
-    public String getName() {
-        return super.getName();
+    public String toString() {
+        return "FurnitureProduct{" +
+                "idProduct=" + idProduct +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", discount=" + discount +
+                ", hasGuarantee=" + hasGuarantee +
+                ", priceTransport=" + priceTransport +
+                "}\n";
     }
 
     @Override

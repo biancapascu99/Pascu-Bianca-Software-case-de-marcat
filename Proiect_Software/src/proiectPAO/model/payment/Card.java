@@ -10,6 +10,11 @@ public class Card {
         this.cardNumber = numberCard;
     }
 
+    public Card() {
+        this.name = null;
+        this.cardNumber = 0;
+    }
+
     public String getName() {
         return name;
     }

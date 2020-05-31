@@ -2,7 +2,35 @@ package proiectPAO.model.products;
 
 public class FoodProduct extends Product {
 
+    private int idProduct;
     private boolean isExpired;
+
+    public FoodProduct() {
+    }
+
+    public FoodProduct(int idProduct, boolean isExpired) {
+        this.idProduct = idProduct;
+        this.isExpired = isExpired;
+    }
+
+
+    public FoodProduct( int idProduct,String name, double price, int quantity, double discount, boolean isExpired) {
+        super(name, price, quantity, discount);
+        this.idProduct = idProduct;
+        this.isExpired = isExpired;
+    }
+
+    public FoodProduct(String name, double price, int quantity, int idProduct, boolean isExpired) {
+        super(name, price, quantity);
+        this.idProduct = idProduct;
+        this.isExpired = isExpired;
+    }
+
+    public FoodProduct(String name, double price, double discount, int idProduct, boolean isExpired) {
+        super(name, price, discount);
+        this.idProduct = idProduct;
+        this.isExpired = isExpired;
+    }
 
     public FoodProduct(String name, double price, int quantity, boolean isExpired) {
         super(name, price, quantity);
@@ -44,7 +72,14 @@ public class FoodProduct extends Product {
 
     @Override
     public String toString() {
-            return "Nume produs: " + this.name + " Pret: " + this.priceQuantity();
+        return "FoodProduct{" +
+                "idProduct=" + idProduct +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", discount=" + discount +
+                ", isExpired=" + isExpired +
+                "}\n";
     }
 
     @Override

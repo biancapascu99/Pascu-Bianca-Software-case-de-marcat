@@ -1,11 +1,15 @@
 package proiectPAO.Main;
 
+import proiectPAO.BD.DbConnectionUtil;
 import proiectPAO.model.cashregisters.CashRegister;
 import proiectPAO.model.payment.Card;
 import proiectPAO.model.payment.Payment;
 import proiectPAO.model.products.*;
+import proiectPAO.repository.FoodProductRepositoryDB;
 import proiectPAO.service.*;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +32,15 @@ public class Main {
     private static FurnitureProductCSVService furnitureProductCSVService = FurnitureProductCSVService.getInstance();
     private static AppliancesProductCSVService appliancesProductCSVService = AppliancesProductCSVService.getInstance();
     private static ClotheProductCSVService clotheProductCSVService = ClotheProductCSVService.getInstance();
+
+//    private static CashRegisterService cashRegisterServiceDB = CashRegisterService.getInstance();
+//    private static PaymentService paymentServiceDB = PaymentService.getInstance();
+//    private static ProductService productServiceDB = ProductService.getInstance();
+
+    private static Connection connection = DbConnectionUtil.getDBConnection();
+    private static CardServiceDB cardServiceDB = new CardServiceDB(connection);
+    private static CashRegisterServiceDB cashRegisterServiceDB = new CashRegisterServiceDB(connection);
+
 
     //    Etapa I
     private static void createLists() {
@@ -126,7 +139,7 @@ public class Main {
         System.out.println(cardService.getCard());
     }
 
-//    EtapaII
+    //    EtapaII
     public static void loadData() {
         cardCSVService.readData();
         cashRegisterCSVService.readData();
@@ -152,12 +165,124 @@ public class Main {
 
     }
 
+    //  Etapa III
 
-    public static void main(String[] args) {
+    public static void etapaIII() throws SQLException {
+
+//        card
+
+//        Card card1 = new Card();
+//        card1.setName("Miana");
+//        card1.setNumberCard(8345);
+//        cardServiceDB.addCard(card1);
+//        Card card2 = new Card();
+//        card2.setName("Mirel");
+//        card2.setNumberCard(2452);
+//        cardServiceDB.addCard(card2);
+//        System.out.println(cardServiceDB.getCard());
+//        cardServiceDB.deleteCard(2452);
+//        System.out.println(cardServiceDB.getCard());
+
+//        cashRegister
+
+        CashRegister cashRegister1 = new CashRegister();
+        cashRegister1.setCashierNumber(5);
+        cashRegister1.setCashierName("Mara");
+        cashRegisterServiceDB.addCashRegister(cashRegister1);
+        CashRegister cashRegister2 = new CashRegister();
+        cashRegister2.setCashierNumber(14);
+        cashRegister2.setCashierName("Mirela");
+        cashRegisterServiceDB.addCashRegister(cashRegister2);
+        System.out.println(cashRegisterServiceDB.getCashRegister());
+//        cashRegisterServiceDB.deleteByNumber(14);
+//        cashRegisterServiceDB.deleteByNumber(13);
+//        System.out.println(cashRegisterServiceDB.getCashRegister());
+//        System.out.println(cashRegisterServiceDB.findByNumber(12));
+        cashRegisterServiceDB.changeNumberOfCashRegister(5, 45);
+        System.out.println(cashRegisterServiceDB.getCashRegister());
+
+
+    }
+
+
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
 //        etapaI();
-        System.out.println("__________ETAPA_II____________");
-        etapaII();
+//        System.out.println("__________ETAPA_II____________");
+//        etapaII();
+
+
+        //etapa3
+        //-------------------------cashregister-------------------------
+//        Class.forName("com.mysql.jdbc.Driver");
+//        Connection connection = DbConnectionUtil.getDBConnection();
+//        CashRegisterRepositoryDB cashRegisterRepositoryDB = new CashRegisterRepositoryDB(connection);
+//
+//        CashRegister cashRegister = new CashRegister();
+//        cashRegister.setCashierNumber(5);
+//        cashRegister.setCashierName("Mara");
+//        cashRegisterRepositoryDB.add(cashRegister);
+//        cashRegister.setCashierNumber(12);
+//        cashRegister.setCashierName("Mara");
+//        cashRegisterRepositoryDB.add(cashRegister);
+//        System.out.println(cashRegisterRepositoryDB.getAll());
+//        cashRegisterRepositoryDB.delete(5);
+//        cashRegisterRepositoryDB.delete(12);
+//        System.out.println(cashRegisterRepositoryDB.getAll());
+//        System.out.println(cashRegisterRepositoryDB.findByNumber(12));
+
+
+        //-------------------------product furniture-------------------------------
+
+//        FurnitureProductRepositoryBD furnitureProductRepositoryBD = new FurnitureProductRepositoryBD(connection);
+//        FurnitureProduct furnitureProduct = new FurnitureProduct();
+//        furnitureProduct.setName("scaun");
+//        furnitureProduct.setPrice(20);
+//        furnitureProduct.setQuantity(2);
+//        furnitureProduct.setDiscount(1);
+//       furnitureProduct.setHasGuarantee(true);
+//        furnitureProduct.setPriceTransport(0);
+//        furnitureProductRepositoryBD.add(furnitureProduct);
+//        furnitureProduct.setName("masa");
+//        furnitureProduct.setPrice(20);
+//        furnitureProduct.setQuantity(2);
+//        furnitureProduct.setDiscount(1);
+//        furnitureProduct.setHasGuarantee(false);
+//        furnitureProduct.setPriceTransport(2.0);
+//        furnitureProductRepositoryBD.add(furnitureProduct);
+////        furnitureProductRepositoryBD.delete("scaun");
+////        furnitureProductRepositoryBD.delete("masa");
+//
+////        System.out.println(furnitureProductRepositoryBD.findByGuarantee());
+////        System.out.println(furnitureProductRepositoryBD.findByTransport());
+////        System.out.println(furnitureProductRepositoryBD.getAll());
+//        System.out.println(furnitureProductRepositoryBD.findByName("masa"));
+
+//----------------------product food-----------------------------
+
+//        FoodProductRepositoryDB foodProductRepositoryDB = new FoodProductRepositoryDB(connection);
+//        FoodProduct foodProduct = new FoodProduct();
+//        foodProduct.setName("mar");
+//        foodProduct.setPrice(15.20);
+//        foodProduct.setQuantity(3);
+//        foodProduct.setDiscount(0.1);
+//        foodProduct.setExpired(false);
+//        foodProductRepositoryDB.add(foodProduct);
+//        foodProduct.setName("pere");
+//        foodProduct.setPrice(10.20);
+//        foodProduct.setQuantity(2);
+//        foodProduct.setDiscount(0);
+//        foodProduct.setExpired(true);
+//        foodProductRepositoryDB.add(foodProduct);
+//        System.out.println(foodProductRepositoryDB.getAll());
+////        foodProductRepositoryDB.delete("mar");
+////        System.out.println(foodProductRepositoryDB.getAll());
+//        System.out.println(foodProductRepositoryDB.findByName("pere"));
+////        System.out.println(foodProductRepositoryDB.findByExpired());
+
+        etapaIII();
+
+
     }
 }
 

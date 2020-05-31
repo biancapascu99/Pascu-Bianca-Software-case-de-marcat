@@ -13,7 +13,7 @@ public class PaymentService {
     private AuditService auditService = AuditService.getInstance();
 
     private PaymentService() {
-        System.out.println("PaymentService a fost creat");
+//        System.out.println("PaymentService a fost creat");
     }
 
     public static PaymentService getInstance() {
