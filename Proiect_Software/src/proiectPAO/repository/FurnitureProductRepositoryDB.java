@@ -27,9 +27,8 @@ public class FurnitureProductRepositoryDB {
         statement.setDouble(2, furnitureProduct.getPrice());
         statement.setInt(3, furnitureProduct.getQuantity());
         statement.setDouble(4, furnitureProduct.getDiscount());
-        statement.setBoolean(6, furnitureProduct.isHasGuarantee());
         statement.setDouble(5, furnitureProduct.getPriceTransport());
-
+        statement.setBoolean(6, furnitureProduct.isHasGuarantee());
         statement.executeUpdate();
         statement.close();
     }
@@ -50,11 +49,21 @@ public class FurnitureProductRepositoryDB {
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             FurnitureProduct a = new FurnitureProduct(rs.getInt(1), rs.getString(2),
-                    rs.getDouble(3), rs.getInt(4), rs.getDouble(5), rs.getBoolean(6), rs.getDouble(7));
+                    rs.getDouble(3), rs.getInt(4), rs.getDouble(5), rs.getBoolean(7), rs.getDouble(6));
             furnitureProducts.add(a);
         }
         return furnitureProducts;
     }
+
+
+    public void changePriceOfProduct(String name, double newPrice) throws SQLException {
+        String sql = "UPDATE furnitureproduct SET price = ? WHERE name = ?";
+        PreparedStatement statement =  connection.prepareStatement(sql);
+        statement.setDouble(1, newPrice);
+        statement.setString(2, name);
+        statement.executeUpdate();
+    }
+
 
     public FurnitureProduct findByName(String name) throws SQLException {
         List<FurnitureProduct> furnitureProducts = new ArrayList<FurnitureProduct>();
@@ -66,7 +75,7 @@ public class FurnitureProductRepositoryDB {
         ResultSet rs = statement.executeQuery();
         if (rs.next()) {
             FurnitureProduct a = new FurnitureProduct(rs.getInt(1), rs.getString(2),
-                    rs.getDouble(3), rs.getInt(4), rs.getDouble(5), rs.getBoolean(6), rs.getDouble(7));
+                    rs.getDouble(3), rs.getInt(4), rs.getDouble(5), rs.getBoolean(7), rs.getDouble(6));
             return a;
         }
         return null;
@@ -81,7 +90,7 @@ public class FurnitureProductRepositoryDB {
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             FurnitureProduct a = new FurnitureProduct(rs.getInt(1), rs.getString(2),
-                    rs.getDouble(3), rs.getInt(4), rs.getDouble(5), rs.getBoolean(6), rs.getDouble(7));
+                    rs.getDouble(3), rs.getInt(4), rs.getDouble(5), rs.getBoolean(7), rs.getDouble(6));
             furnitureProducts.add(a);
         }
         return furnitureProducts;

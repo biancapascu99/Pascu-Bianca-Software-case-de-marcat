@@ -20,7 +20,7 @@ public class CashRegister {
         return "CashRegister{" +
                 "cashier='" + cashierName + '\'' +
                 ", numberCashier=" + cashierNumber +
-                '}';
+                "\n";
     }
 
     public int getNumberCashier() {

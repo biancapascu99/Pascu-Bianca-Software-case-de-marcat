@@ -17,6 +17,20 @@ public class CashRegisterRepositoryDB {
         this.connection = connection;
     }
 
+    public boolean login(String name,int number) throws SQLException {
+
+        String sql = "SELECT * FROM cashRegister WHERE cashierName = ? AND cashierNumber = ?";
+        PreparedStatement statement  = connection.prepareStatement(sql);
+        statement.setString(1,name);
+        statement.setInt(2, number);
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            return true;
+        } else
+            return false;
+
+    }
+
     public void add(CashRegister cashRegister) throws SQLException {
         String sql = "INSERT INTO cashRegister VALUES (NULL, ?, ?)";
 

@@ -35,4 +35,5 @@ public class CashRegisterRepository {
         cashRegisterList.removeIf(c -> c.getNumberCashier() == cashRegisterNumber);
     }
 
+
 }

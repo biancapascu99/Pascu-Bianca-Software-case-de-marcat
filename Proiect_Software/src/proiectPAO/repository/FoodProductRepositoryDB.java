@@ -68,6 +68,14 @@ public class FoodProductRepositoryDB {
         return null;
     }
 
+    public void changePriceOfProduct(String name, double newPrice) throws SQLException {
+        String sql = "UPDATE foodproduct SET price = ? WHERE name = ?";
+        PreparedStatement statement =  connection.prepareStatement(sql);
+        statement.setDouble(1, newPrice);
+        statement.setString(2, name);
+        statement.executeUpdate();
+    }
+
     public List<FoodProduct> findByExpired() throws SQLException {
         List<FoodProduct> foodProducts = new ArrayList<FoodProduct>();
 

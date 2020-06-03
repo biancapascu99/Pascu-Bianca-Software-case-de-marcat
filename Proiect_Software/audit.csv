@@ -1,0 +1,25 @@
+main, addCard,1591179105250
+main, addCard,1591179105274
+main, getCard ,1591179105274
+main, deleteCard,1591179105274
+main, getCard ,1591179105290
+main, addCashRegister,1591179105290
+main, addCashRegister,1591179105290
+main, getCashRegister,1591179105290
+main, changeNumberOfCashRegister,1591179105290
+main, getCashRegister,1591179105290
+main, addFoodProduct,1591179105305
+main, addFoodProduct,1591179105305
+main, getFoodProduct,1591179105305
+main, getFoodProduct,1591179105321
+main, findByName,1591179105321
+main, findByExpired,1591179105321
+main, changePriceOfProduct,1591179105334
+main, getFoodProduct,1591179105334
+main, addFurnitureProduct,1591179105334
+main, addFurnitureProduct,1591179105334
+main, findByGuarantee,1591179105334
+main' findByTransport,1591179105350
+main, getFurnitureProduct,1591179105350
+main, changePriceOfProduct,1591179105350
+main, getFurnitureProduct,1591179105350
